@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# tweetdisp:
+#
+# Copyright (c) 2011 Adam McGreggor. All rights reserved.
+# Email: <adam@amyl.org.uk> Web: <http://blog.amyl.org.uk>
+#
+# $Id:$
+#
+
+set -e
+
+VHD=/data/vhosts/amyl.org.uk/docs
+WDIR=${VHD}/tweets
+TF=${WDIR}/selected
+OF=${WDIR}/frequency
+
+ADAMAMYLCOUNT=`mysql -BNe "select count(*) from adamamyl_thinkup.tu_posts WHERE author_username='adamamyl';"`
+echo "From ${ADAMAMYLCOUNT} tweets @adamamyl's made I can reveal…" > ${OF}
+echo "" >> ${OF}
+$HOME/bin/adamamyltweets | column -t >> ${TF}
+awk '{print $2, $1}' ${TF} | sort -rn | column -t >> ${OF}
+echo "" >> ${OF}
+echo "" >> ${OF}
+echo "" >> ${OF}
+cat ${TF} >> ${OF}
+echo "" >> ${OF}
+echo "Updated at: `date '+%F %T'`" >> ${OF}
+rm ${TF}
+
+# vim:tabstop=4:expandtab:shiftwidth=4

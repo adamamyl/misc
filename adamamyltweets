@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# adamamyltweets:
+#
+# Copyright (c) 2011 Adam McGreggor. All rights reserved.
+# Email: <adam@amyl.org.uk> Web: <http://blog.amyl.org.uk>
+#
+# $Id:$
+#
+
+set -e
+
+for W in arse beer bollocks bum cake cock cunt flange fuck gay gin jizz muppet nsfw penis piss pub pudenda shit tea tipsy tits totty twat wank wang wibe willy wine
+
+do 
+    COUNT=`mysql -BNe "select count(*) from adamamyl_thinkup.tu_posts 
+    WHERE author_username='adamamyl' and post_text LIKE '%"${W}"%';"`
+    echo "${W}  ${COUNT}"
+done
+
+# vim:tabstop=4:expandtab:shiftwidth=4
