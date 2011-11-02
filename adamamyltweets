@@ -10,7 +10,7 @@
 
 set -e
 
-for W in arse beer bollocks bum cake cock cunt flange fuck gay gin jizz muppet nsfw penis piss pub pudenda shit tea tipsy tits totty twat wank wang wibe willy wine
+for W in arse beer bollocks bum cake cock cunt flange fuck gay gin jizz lamb muppet nsfw penis piss pub pudenda shit tea tipsy tits totty twat wank wang wibe willy wine
 
 do 
     COUNT=`mysql -BNe "select count(*) from adamamyl_thinkup.tu_posts 
